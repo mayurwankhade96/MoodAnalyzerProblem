@@ -2,7 +2,7 @@ using NUnit.Framework;
 using MoodAnalyzerProblem;
 
 namespace MoodAnalyzerTest
-{    
+{
     public class Tests
     {
         MoodAnalyzer MoodAnalyzer = new MoodAnalyzer();
@@ -15,12 +15,14 @@ namespace MoodAnalyzerTest
         {
             // Arrange
             string expected = "SAD";
+            string message = "I am in Sad Mood";
+            MoodAnalyzer MoodAnalyzer = new MoodAnalyzer(message);
 
             // Act
-            string message = MoodAnalyzer.AnalyzeMood("I am in Sad Mood");
+            string mood = MoodAnalyzer.AnalyzeMood();
 
             // Assert
-            Assert.AreEqual(expected, message);
+            Assert.AreEqual(expected, mood);
         }
 
         /// <summary>
@@ -31,12 +33,14 @@ namespace MoodAnalyzerTest
         {
             // Arrange
             string expected = "HAPPY";
+            string message = "I am in Any Mood";
+            MoodAnalyzer MoodAnalyzer = new MoodAnalyzer(message);
 
             // Act
-            string message = MoodAnalyzer.AnalyzeMood("I am in Any Mood");
+            string mood = MoodAnalyzer.AnalyzeMood();
 
             // Assert
-            Assert.AreEqual(expected, message);
+            Assert.AreEqual(expected, mood);
         }
     }
 }
