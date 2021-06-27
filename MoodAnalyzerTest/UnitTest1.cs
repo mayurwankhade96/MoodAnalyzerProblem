@@ -8,7 +8,7 @@ namespace MoodAnalyzerTest
         MoodAnalyzer MoodAnalyzer = new MoodAnalyzer();
 
         /// <summary>
-        /// Given I am in Sad Mood, should return SAD
+        /// TC 1.1 Given I am in Sad Mood, should return SAD
         /// </summary>
         [Test]
         public void GivenSadMoodShouldReturnSAD()
@@ -26,7 +26,7 @@ namespace MoodAnalyzerTest
         }
 
         /// <summary>
-        /// Given I am in Happy Mood, should return HAPPY
+        /// TC 1.2 Given I am in Happy Mood, should return HAPPY
         /// </summary>
         [Test]
         public void GivenAnyMoodShouldReturnHAPPY()
@@ -34,6 +34,24 @@ namespace MoodAnalyzerTest
             // Arrange
             string expected = "HAPPY";
             string message = "I am in Happy Mood";
+            MoodAnalyzer MoodAnalyzer = new MoodAnalyzer(message);
+
+            // Act
+            string mood = MoodAnalyzer.AnalyzeMood();
+
+            // Assert
+            Assert.AreEqual(expected, mood);
+        }
+
+        /// <summary>
+        /// TC 2.1 Given Null Mood, should return HAPPY
+        /// </summary>
+        [Test]
+        public void GivenNullMoodShouldReturnHAPPY()
+        {
+            // Arrange
+            string expected = "HAPPY";
+            string message = null;
             MoodAnalyzer MoodAnalyzer = new MoodAnalyzer(message);
 
             // Act
