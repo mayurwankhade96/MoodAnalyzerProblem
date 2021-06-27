@@ -26,14 +26,14 @@ namespace MoodAnalyzerTest
         }
 
         /// <summary>
-        /// Given I am in Any Mood, should return SAD
+        /// Given I am in Happy Mood, should return HAPPY
         /// </summary>
         [Test]
         public void GivenAnyMoodShouldReturnHAPPY()
         {
             // Arrange
             string expected = "HAPPY";
-            string message = "I am in Any Mood";
+            string message = "I am in Happy Mood";
             MoodAnalyzer MoodAnalyzer = new MoodAnalyzer(message);
 
             // Act
