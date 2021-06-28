@@ -46,19 +46,63 @@ namespace MoodAnalyzerTest
         /// <summary>
         /// TC 2.1 Given Null Mood, should return HAPPY
         /// </summary>
+        //[Test]
+        //public void GivenNullMoodShouldReturnHAPPY()
+        //{
+        //    // Arrange
+        //    string expected = "HAPPY";
+        //    string message = null;
+        //    MoodAnalyzer MoodAnalyzer = new MoodAnalyzer(message);
+
+        //    // Act
+        //    string mood = MoodAnalyzer.AnalyzeMood();
+
+        //    // Assert
+        //    Assert.AreEqual(expected, mood);
+        //}
+
+        /// <summary>
+        /// TC 3.1 Given NULL Mood Should Throw MoodAnalysisException
+        /// </summary>
         [Test]
-        public void GivenNullMoodShouldReturnHAPPY()
+        public void Given_NULL_Mood_Should_Throw_MoodAnalysisException()
         {
-            // Arrange
-            string expected = "HAPPY";
-            string message = null;
-            MoodAnalyzer MoodAnalyzer = new MoodAnalyzer(message);
+            try
+            {
+                // Arrange
+                string message = null;
+                MoodAnalyzer moodAnalyzer = new MoodAnalyzer(message);
 
-            // Act
-            string mood = MoodAnalyzer.AnalyzeMood();
+                // Act
+                string mood = moodAnalyzer.AnalyzeMood();
+            }
+            catch(MoodAnalyzerException ex)
+            {
+                // Assert
+                Assert.AreEqual("Mood should not be null", ex.Message);
+            }
+        }
 
-            // Assert
-            Assert.AreEqual(expected, mood);
+        /// <summary>
+        /// TC 3.2 Given Empty Mood Should Throw MoodAnalysisException indicating Empty Mood
+        /// </summary>
+        [Test]
+        public void Given_Empty_Mood_Should_Throw_MoodAnalysisException()
+        {
+            try
+            {
+                // Arrange
+                string message = "";
+                MoodAnalyzer moodAnalyzer = new MoodAnalyzer(message);
+
+                // Act
+                string mood = moodAnalyzer.AnalyzeMood();
+            }
+            catch (MoodAnalyzerException ex)
+            {
+                // Assert
+                Assert.AreEqual("Mood should not be empty", ex.Message);
+            }
         }
     }
 }
