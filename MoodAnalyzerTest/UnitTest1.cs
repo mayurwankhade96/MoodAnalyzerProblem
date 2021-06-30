@@ -119,28 +119,6 @@ namespace MoodAnalyzerTest
             object obj = MoodAnalyzerFactory.CreateMoodAnalyze("MoodAnalyzerProblem.MoodAnalyzer", "MoodAnalyzer");
 
             expected.Equals(obj);
-        }
-
-        /// <summary>
-        /// TC 4.2 Given Class Name When Improper Should Throw MoodAnalysisException
-        /// </summary>
-        [Test]
-        public void GivenClassNameWhenImproperShouldThrowMoodAnalysisException()
-        {
-            try
-            {
-                // Arrange
-                string message = null;
-                object expected = new MoodAnalyzer(message);
-
-                // Act
-                object obj = MoodAnalyzerFactory.CreateMoodAnalyze("MoodAnalyzerProblem.MoodAnalyzers", "MoodAnalyzer");
-            }
-            catch (MoodAnalyzerException ex)
-            {
-                // Assert
-                Assert.AreEqual("Class not found", ex.Message);
-            }
-        }
+        }        
     }
 }
