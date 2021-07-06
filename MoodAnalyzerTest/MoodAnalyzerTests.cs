@@ -1,7 +1,6 @@
 using NUnit.Framework;
-using MoodAnalyzerProblem;
 
-namespace MoodAnalyzerTest
+namespace MoodAnalyzerProblem.MoodAnalyzerTests
 {
     public class Tests
     {
@@ -119,6 +118,50 @@ namespace MoodAnalyzerTest
             object obj = MoodAnalyzerFactory.CreateMoodAnalyze("MoodAnalyzerProblem.MoodAnalyzer", "MoodAnalyzer");
 
             expected.Equals(obj);
-        }        
+        }
+
+        /// <summary>
+        /// TC 4.2 Given Class Name When Improper Should Throw MoodAnalysisException
+        /// </summary>
+        [Test]
+        public void CreateMoodAnalyze_ImproperClassName_ShouldThrowMoodAnalysisException()
+        {
+            try
+            {
+                // Arrange
+                string className = "MoodAnalyzers.MoodAnalyzer";
+                string constructorName = "MoodAnalyzer";
+
+                // Act
+                object obj = MoodAnalyzerFactory.CreateMoodAnalyze(className, constructorName);
+            }
+            catch (MoodAnalyzerException ex)
+            {
+                // Assert
+                Assert.AreEqual("Class not found", ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// TC 4.3 Given Class When Constructor Not Proper Should Throw MoodAnalysisException
+        /// </summary>
+        [Test]
+        public void CreateMoodAnalyze_ConstructorNotProper_ShouldThrowMoodAnalysisException()
+        {
+            try
+            {
+                // Arrange
+                string className = "MoodAnalyzerProblem.MoodAnalyzer";
+                string constructorName = "MoodAnalyzers";
+
+                // Act
+                object obj = MoodAnalyzerFactory.CreateMoodAnalyze(className, constructorName);
+            }
+            catch (MoodAnalyzerException ex)
+            {
+                // Assert
+                Assert.AreEqual("Constructor is not found", ex.Message);
+            }
+        }
     }
 }
