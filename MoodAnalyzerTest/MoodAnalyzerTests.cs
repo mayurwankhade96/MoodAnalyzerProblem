@@ -126,19 +126,17 @@ namespace MoodAnalyzerProblem.MoodAnalyzerTests
         [Test]
         public void CreateMoodAnalyze_ImproperClassName_ShouldThrowMoodAnalysisException()
         {
+            // Arrange
+            string expected = "Class not found";
             try
             {
-                // Arrange
-                string className = "MoodAnalyzers.MoodAnalyzer";
-                string constructorName = "MoodAnalyzer";
-
                 // Act
-                object obj = MoodAnalyzerFactory.CreateMoodAnalyze(className, constructorName);
+                object obj = MoodAnalyzerFactory.CreateMoodAnalyze("MoodAnalyzerProblems.MoodAnalyzer", "MoodAnalyzer");
             }
             catch (MoodAnalyzerException ex)
             {
                 // Assert
-                Assert.AreEqual("Class not found", ex.Message);
+                Assert.AreEqual(expected, ex.Message);
             }
         }
 
@@ -160,6 +158,65 @@ namespace MoodAnalyzerProblem.MoodAnalyzerTests
             catch (MoodAnalyzerException ex)
             {
                 // Assert
+                Assert.AreEqual("Constructor is not found", ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// TC 5.1 Given MoodAnalyze class name should return MoodAnalyzer object
+        /// </summary>
+        [Test]
+        public void GivenMoodAnalyzerClassName_ShouldReturnMoodAnalyzeObject_UsingParameterisedConstructor()
+        {
+            // Arrange
+            object expected = new MoodAnalyzer("HAPPY");
+
+            // Act
+            object obj = MoodAnalyzerFactory.CreateMoodAnalyzeUsingParameterisedConstructor("MoodAnalyzerProblem.MoodAnalyzer", "MoodAnalyzer");
+
+            expected.Equals(obj);
+        }
+
+        /// <summary>
+        /// TC 5.2 Given Class Name When Improper Should Throw MoodAnalysisException
+        /// </summary>
+        [Test]
+        public void CreateMoodAnalyzeUsingParameterisedConstructor_ImproperClassName_ShouldThrowMoodAnalysisException()
+        {
+            try
+            {
+                //Arrange
+                string className = "MoodAnalyzerProblems.MoodAnalyzer";
+                string constructorName = "MoodAnalyzer";
+
+                //Act
+                object resultObj = MoodAnalyzerFactory.CreateMoodAnalyzeUsingParameterisedConstructor(className, constructorName);
+            }
+            catch (MoodAnalyzerException ex)
+            {
+                //Assert
+                Assert.AreEqual("Class not found", ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// TC 5.3 Given Class When Constructor Not Proper Should Throw MoodAnalysisException
+        /// </summary>
+        [Test]
+        public void CreateMoodAnalyzeUsingParameterisedConstructor_ConstructorNotProper_ShouldThrowMoodAnalysisException()
+        {
+            try
+            {
+                //Arrange
+                string className = "MoodAnalyzerProblem.MoodAnalyzer";
+                string constructorName = "MoodAnalyzers";
+
+                //Act
+                object Obj = MoodAnalyzerFactory.CreateMoodAnalyzeUsingParameterisedConstructor(className, constructorName);
+            }
+            catch (MoodAnalyzerException ex)
+            {
+                //Assert
                 Assert.AreEqual("Constructor is not found", ex.Message);
             }
         }
